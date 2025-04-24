@@ -77,11 +77,17 @@ DATABASES = {
 #         'NAME': os.environ.get('DB_NAME', 'order_service'),
 #         'USER': os.environ.get('DB_USER', 'dbuser'),
 #         'PASSWORD': os.environ.get('DB_PASS', 'pass'),
-#         'HOST': os.environ.get('DB_HOST', 'database'),
-#         'PORT': os.environ.get('DB_PORT', 5433),
+#         'HOST': os.environ.get('DB_HOST', 'localhost'),
+#         'PORT': 5433,
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'db.sqlite3',  # Или полный путь к файлу базы данных
+#     }
+# }
 
 
 AUTH_PASSWORD_VALIDATORS = [

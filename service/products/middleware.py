@@ -24,13 +24,12 @@ class SubscriptionCheckMiddleware(MiddlewareMixin):
 
             # Проверяем, аутентифицирован ли пользователь
             if not user.is_authenticated:
-                return Response({"error": "Authentication required."}, status=status.HTTP_401_UNAUTHORIZED)
+                return HttpResponse("Пользователь не авторизован", status=401)
 
             # Проверяем наличие подписки
-            bull = UserSubscription.objects.filter(user=user).exists()
+            bull = UserSubscription.objects.filter(user=user.id).exists()
 
-            if bull:
-                # return Response(status=status.HTTP_400_BAD_REQUEST)
+            if not bull:
                 return HttpResponse("Доступ запрещен", status=403)
 
             # Если подписка найдена, продолжаем выполнение запроса
