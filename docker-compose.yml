@@ -1,7 +1,7 @@
 services:    # сервисы
   web-app:    # название сервиса
     build:
-      context: .    # путь к доккер файлу
+      context: service    # путь к доккер файлу
     ports:    # порты
       - "8000:8000"
     volumes:    # подключение из локальной машины в доккер контейнер
@@ -25,3 +25,21 @@ services:    # сервисы
       - POSTGRES_PASSWORD=pass
       - POSTGRES_DB=order_service
 
+  tg:    # название сервиса
+    build:
+      context: telegram    # путь к доккер файлу
+    ports:    # порты
+      - "8001:8000"
+    volumes:    # подключение из локальной машины в доккер контейнер
+      - ./service:/service
+
+    command: >    # команда для запуска
+      sh -c "python tg.py"
+    environment:
+      - DB_HOST=database
+      - DB_USER=dbuser
+      - DB_PASS=pass
+      - DB_NAME=order_service
+
+    depends_on:    # зависимости сервиса от других
+      - database
