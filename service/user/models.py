@@ -8,9 +8,9 @@ class User(AbstractUser):
 
    email = models.EmailField(unique=True, verbose_name='Email')  # поле для авторизации
    phone = models.CharField(max_length=50, verbose_name='Телефон', help_text='Введите свой телефон', blank=True,
-                            null=True)
+                            null=True, unique=True)
    token = models.CharField(max_length=100, verbose_name='Token', blank=True, null=True)
-   tg_id = models.IntegerField(verbose_name='Telegram‑ID', blank=True, null=True)
+   tg_id = models.IntegerField(verbose_name='Telegram‑ID', blank=True, null=True, unique=True)
 
    USERNAME_FIELD = "email"  # обязательные параметры, поле для авторизации
    REQUIRED_FIELDS = []  # обязательные параметры

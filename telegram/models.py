@@ -1,13 +1,25 @@
-from config_bd import Base
-from sqlalchemy import Column, Integer, Date, String, ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import MetaData
 
+Base = declarative_base()
+
+metadata = MetaData()
 
 class User(Base):
-    __tablename__ = "users"  # Имя таблицы
+    __tablename__ = 'user_user'
 
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String)
-    email = Column(String, unique=True, index=True)
+    id = Column(Integer, primary_key=True)
+    email = Column(String(255), unique=True, nullable=False)
+    phone = Column(String(50), unique=True, nullable=True)
+    token = Column(String(100), nullable=True)
+    tg_id = Column(Integer, unique=True, nullable=True)
+    # Добавьте другие поля из вашей модели User
+    is_active = Column(Boolean, default=True)
+    is_staff = Column(Boolean, default=False)
+    is_superuser = Column(Boolean, default=False)
+    last_login = Column(DateTime)
+    password = Column(String(128))
 
     def __repr__(self):
-        return f"<User(id={self.id}, name='{self.name}', email='{self.email}')>"
+        return f"<User(email='{self.email}')>"

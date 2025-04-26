@@ -12,10 +12,6 @@ class SubscriptionCheckMiddleware(MiddlewareMixin):
     """
 
     def process_view(self, request, view_func, view_args, view_kwargs):
-        """
-        Выполняется перед вызовом view function.
-        """
-
         # Проверяем, является ли view функцией OrderViewSet
         view_class = getattr(view_func, 'cls', None)  # Получаем класс viewset'а.  Для Function Based View это будет None.
         if view_class and view_class.__name__ == "OrderViewSet":

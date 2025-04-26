@@ -126,12 +126,21 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 REST_FRAMEWORK = {
-   "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated",],
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
 }
+
+
 
 SIMPLE_JWT = {
-   'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-   'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=50),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
 
 
+
+TELEGRAM_TOKEN = "7631853339:AAGsS9CiWQ0JSlyxdfn-VjQMlKrV5vkillk"

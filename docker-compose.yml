@@ -31,7 +31,7 @@ services:    # сервисы
     ports:    # порты
       - "8001:8000"
     volumes:    # подключение из локальной машины в доккер контейнер
-      - ./service:/service
+      - ./telegram:/telegram
 
     command: >    # команда для запуска
       sh -c "python tg.py"
